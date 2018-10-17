@@ -1,3 +1,4 @@
+import os
 import json
 import requests, random, re
 from django.http import HttpResponse, JsonResponse
@@ -14,7 +15,7 @@ FB_ENDPOINT & PAGE_ACCESS_TOKEN
 Come from the next step.
 """
 FB_ENDPOINT = 'https://graph.facebook.com/v2.12/'
-PAGE_ACCESS_TOKEN = "EAAcf47h2im0BANWbZCNFvSZCLNzNZBkM2n1hfTOuS1LjAoTFFXnMGuRycOLZAZBFbn1i4kZCsrg8UXbd2nt2QAkZBaB3Wwxr1AMkGVCyyBZB5WvBCmEpz0FZB8IPMYjYnVDH6wB9Sss4bMbZAUoznlOHAverTXYaGYScrUcHSRzHP8v00joZAwYdHUJlfgzdvjiqp8ZD"
+PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
 
 def parse_and_send_fb_message(fbid, recevied_message):
     # Remove all punctuations, lower case the text and split it based on space
