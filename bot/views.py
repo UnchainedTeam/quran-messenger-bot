@@ -15,8 +15,8 @@ Come from the next step.
 """
 
 FB_ENDPOINT = 'https://graph.facebook.com/v2.12/'
-VERIFY_TOKEN = os.endviron.get('VERIFY_TOKEN')
-PAGE_ACCESS_TOKEN = os.endviron.get('PAGE_ACCESS_TOKEN')
+VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
 
 
 def parse_and_send_fb_message(fbid, recevied_message):
