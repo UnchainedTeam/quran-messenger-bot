@@ -8,17 +8,20 @@ from django.utils.decorators import method_decorator
 
 from .logic import LOGIC_RESPONSES, answer
 
-VERIFY_TOKEN = "1709cefe755becb7d7daa875a93498b98026a6bb33f01e10fa" # generated above
 
 """
 FB_ENDPOINT & PAGE_ACCESS_TOKEN
 Come from the next step.
 """
+
 FB_ENDPOINT = 'https://graph.facebook.com/v2.12/'
-PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
+VERIFY_TOKEN = os.endpoint.get('VERIFY_TOKEN')
+PAGE_ACCESS_TOKEN = os.endpoint.get('PAGE_ACCESS_TOKEN')
+
 
 def parse_and_send_fb_message(fbid, recevied_message):
     # Remove all punctuations, lower case the text and split it based on space
+    #print("Request msg: {}".format(recevied_message))
     tokens = re.sub(r"[^a-zA-Z0-9\s]",' ',recevied_message).lower().split()
     msg = None
     for token in tokens:
@@ -26,7 +29,10 @@ def parse_and_send_fb_message(fbid, recevied_message):
             msg = random.choice(LOGIC_RESPONSES[token])
             break
 
-    msg = answer(recevied_message)
+    if msg is None:
+        msg = answer(recevied_message)
+
+    #print("Message: {}".format(msg))
 
 
     if msg is not None:                 
@@ -63,6 +69,7 @@ class FacebookWebhookView(View):
 
     def post(self, request, *args, **kwargs):
         incoming_message = json.loads(request.body.decode('utf-8'))
+        #print(incoming_message)
         for entry in incoming_message['entry']:
             for message in entry['messaging']:
                 if 'message' in message:

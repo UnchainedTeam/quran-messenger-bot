@@ -25,7 +25,7 @@ SECRET_KEY = '8u#pcw6c^)cg9(+4q3r673e5ouuww=^#))c1w02ehd6ig39(o&'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1','alfanous-bot.herokuapp.com']
+ALLOWED_HOSTS = ['127.0.0.1','alfanous-bot.herokuapp.com','be5ec55d.ngrok.io']
 
 
 # Application definition
