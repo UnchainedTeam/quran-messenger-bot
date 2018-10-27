@@ -22,16 +22,11 @@ def parse_and_send_fb_message(fbid, received_message):
     message.frequency+=1
     message.save()
 
-    tokens = re.sub(r"[^a-zA-Z0-9\s]", ' ', received_message).lower().split()
-    msg = None
-    for token in tokens:
-        if token in LOGIC_RESPONSES:
-            msg = random.choice(LOGIC_RESPONSES[token])
-            break
-
-    if msg is None:
+    if received_message.lower().strip() in LOGIC_RESPONSES:
+        msg = random.choice(LOGIC_RESPONSES[received_message])
+        print(received_message.lower().strip())
+    else:
         msg = answer(received_message)
-
 
     if msg is not None:
         endpoint = "{}/me/messages?access_token={}".format(FB_ENDPOINT, PAGE_ACCESS_TOKEN)
