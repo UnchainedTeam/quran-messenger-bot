@@ -39,10 +39,11 @@ def parse_and_send_fb_message(fbid, received_message):
 
                         } for result in results
                     ],
-                    "buttons": []
+                    "sharable": True
                 }
             }
         }
+
 
     if msg is not None:
         endpoint = "{}/me/messages?access_token={}".format(FB_ENDPOINT, PAGE_ACCESS_TOKEN)
