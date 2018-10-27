@@ -16,7 +16,7 @@ from misba7.settings import FB_ENDPOINT, PAGE_ACCESS_TOKEN, VERIFY_TOKEN
 
 
 def parse_and_send_fb_message(fbid, received_message):
-    message = Message.objects.get_or_create(
+    message, created = Message.objects.get_or_create(
         text = received_message
     )
     message.frequency+=1
