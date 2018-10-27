@@ -26,22 +26,25 @@ def parse_and_send_fb_message(fbid, received_message):
         msg = {"text": random.choice(LOGIC_RESPONSES[normalized])}
     else:
         results = answer(received_message)
-        msg = {
-            "attachment": {
-                "type": "template",
-                "payload": {
-                    "template_type": "generic",
-                    "elements": [
-                        {
-                            "title": result['title'],
-                            "subtitle": result['body'],
+        if results:
+            msg = {
+                "attachment": {
+                    "type": "template",
+                    "payload": {
+                        "template_type": "generic",
+                        "elements": [
+                            {
+                                "title": result['title'],
+                                "subtitle": result['body'],
 
-                        } for result in results
-                    ],
-                    "sharable": True
+                            } for result in results
+                        ],
+                        "sharable": True
+                    }
                 }
             }
-        }
+        else:
+            msg = None
 
 
     if msg is not None:
