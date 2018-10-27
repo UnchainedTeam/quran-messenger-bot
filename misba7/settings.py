@@ -32,7 +32,7 @@ VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
 PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
 
 
-ALLOWED_HOSTS = ['alfanous-bot.herokuapp.com']
+ALLOWED_HOSTS = ['alfanous-bot.herokuapp.com', 'chatbot.alfanous.org']
 
 if DEBUG:
     ALLOWED_HOSTS+=[
