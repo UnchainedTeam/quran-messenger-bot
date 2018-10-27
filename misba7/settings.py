@@ -13,6 +13,8 @@ https://docs.djangoproject.com/en/1.11/ref/settings/
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+import dj_database_url
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
@@ -23,14 +25,21 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = os.environ.get('SECRET_KEY', '8u#pcw6c^)cg9(+4q3r673e5ouuww=^#))c1w02ehd6ig39(o&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DEBUG', False)
+DEBUG = bool(os.environ.get('DEBUG', False))
 
 FB_ENDPOINT = 'https://graph.facebook.com/v2.12/'
 VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
 PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
 
 
-ALLOWED_HOSTS = ['127.0.0.1','alfanous-bot.herokuapp.com','be5ec55d.ngrok.io']
+ALLOWED_HOSTS = ['alfanous-bot.herokuapp.com']
+
+if DEBUG:
+    ALLOWED_HOSTS+=[
+        '127.0.0.1',
+        'localhost',
+        'be5ec55d.ngrok.io'
+    ]
 
 
 # Application definition
@@ -80,12 +89,8 @@ WSGI_APPLICATION = 'misba7.wsgi.application'
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': dj_database_url.config(default="sqlite:///db.sqlite3")
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
