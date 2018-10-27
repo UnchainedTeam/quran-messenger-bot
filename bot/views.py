@@ -30,8 +30,7 @@ def parse_and_send_fb_message(fbid, received_message):
             "attachment": {
                 "type": "template",
                 "payload": {
-                    "template_type": "list",
-                    "top_element_style": "compact",
+                    "template_type": "generic",
                     "elements": [
                         {
                             "title": result['title'],
