@@ -25,7 +25,6 @@ def parse_and_send_fb_message(fbid, received_message):
     normalized = received_message.lower().strip()
     if normalized in LOGIC_RESPONSES:
         msg = random.choice(LOGIC_RESPONSES[normalized])
-        print(normalized)
     else:
         msg = answer(received_message)
 
