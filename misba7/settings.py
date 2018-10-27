@@ -20,10 +20,15 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '8u#pcw6c^)cg9(+4q3r673e5ouuww=^#))c1w02ehd6ig39(o&'
+SECRET_KEY = os.environ.get('SECRET_KEY', '8u#pcw6c^)cg9(+4q3r673e5ouuww=^#))c1w02ehd6ig39(o&')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get('DEBUG', False)
+
+FB_ENDPOINT = 'https://graph.facebook.com/v2.12/'
+VERIFY_TOKEN = os.environ.get('VERIFY_TOKEN')
+PAGE_ACCESS_TOKEN = os.environ.get('PAGE_ACCESS_TOKEN')
+
 
 ALLOWED_HOSTS = ['127.0.0.1','alfanous-bot.herokuapp.com','be5ec55d.ngrok.io']
 
