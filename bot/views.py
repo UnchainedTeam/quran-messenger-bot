@@ -22,9 +22,10 @@ def parse_and_send_fb_message(fbid, received_message):
     message.frequency+=1
     message.save()
 
-    if received_message.lower().strip() in LOGIC_RESPONSES:
-        msg = random.choice(LOGIC_RESPONSES[received_message])
-        print(received_message.lower().strip())
+    normalized = received_message.lower().strip()
+    if normalized in LOGIC_RESPONSES:
+        msg = random.choice(LOGIC_RESPONSES[normalized])
+        print(normalized)
     else:
         msg = answer(received_message)
 
