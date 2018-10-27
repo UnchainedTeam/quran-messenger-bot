@@ -9,9 +9,9 @@ def answer(query):
     if not response["error"]["code"]:
         for i in xrange(1, min(limit + 1, response["search"]["interval"]["total"] + 1)):
             result = {
-                'title': "{" + response["search"]["ayas"][i]["identifier"]["sura_arabic_name"] + " " + str(
-                    response["search"]["ayas"][i]["identifier"]["aya_id"]) + "}",
-                'body': "\n" + response["search"]["ayas"][i]["aya"]["text"]
+                'title':  response["search"]["ayas"][i]["identifier"]["sura_arabic_name"] + " " + str(
+                    response["search"]["ayas"][i]["identifier"]["aya_id"]),
+                'body': response["search"]["ayas"][i]["aya"]["text"]
             }
             results.append(result)
     return results
