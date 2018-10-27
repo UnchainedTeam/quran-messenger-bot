@@ -1,7 +1,6 @@
 import json
 
 import random
-import re
 import requests
 from django.http import HttpResponse
 from django.utils.decorators import method_decorator
@@ -17,20 +16,42 @@ from misba7.settings import FB_ENDPOINT, PAGE_ACCESS_TOKEN, VERIFY_TOKEN
 
 def parse_and_send_fb_message(fbid, received_message):
     message, created = Message.objects.get_or_create(
-        text = received_message
+        text=received_message
     )
-    message.frequency+=1
+    message.frequency += 1
     message.save()
 
     normalized = received_message.lower().strip()
     if normalized in LOGIC_RESPONSES:
-        msg = random.choice(LOGIC_RESPONSES[normalized])
+        msg = {"text": random.choice(LOGIC_RESPONSES[normalized])}
     else:
-        msg = answer(received_message)
+        results = answer(received_message)
+        msg = {
+            "attachment": {
+                "type": "template",
+                "payload": {
+                    "template_type": "list",
+                    "top_element_style": "compact",
+                    "elements": [
+                        {
+                            "title": result['title'],
+                            "subtitle": result['body'],
+
+                        } for result in results
+                    ],
+                    "buttons": []
+                }
+            }
+        }
 
     if msg is not None:
         endpoint = "{}/me/messages?access_token={}".format(FB_ENDPOINT, PAGE_ACCESS_TOKEN)
-        response_msg = json.dumps({"recipient": {"id": fbid}, "message": {"text": msg}})
+        response_msg = json.dumps(
+
+            {
+                "recipient": {"id": fbid},
+                "message": msg}
+        )
         status = requests.post(
             endpoint,
             headers={"Content-Type": "application/json"},
