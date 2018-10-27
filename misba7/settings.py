@@ -85,9 +85,6 @@ TEMPLATES = [
 WSGI_APPLICATION = 'misba7.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
     'default': dj_database_url.config(default="sqlite:///db.sqlite3")
 }

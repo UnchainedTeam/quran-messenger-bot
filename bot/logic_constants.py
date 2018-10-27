@@ -22,32 +22,30 @@ LOGIC_RESPONSES = {
     'salam':[
         'Salam',
     ],
-    'سلام':[
-        'وعليكم السلام'
-    ],
-    'السلام عليكم':[
+    u'السلام عليكم':[
         'وعليكم السلام ورحمة الله وبركاته'
     ],
-    'مساعدة':[
-        'أكتب الكلمة التي تريد البحث عنها وسيرد الروبوت بنتائجها'
+    u'مساعدة':[
+        u'أكتب الكلمة التي تريد البحث عنها وسيرد الروبوت بنتائجها'
     ],
-    'ساعدني':[
-        'أكتب الكلمة التي تريد البحث عنها وسيرد الروبوت بنتائجها'
+    u'ساعدني':[
+        u'أكتب الكلمة التي تريد البحث عنها وسيرد الروبوت بنتائجها'
     ],
     'menu':[
         'No menu for now',
     ],
     'help': [
-        """Exact search:	فأسقيناكموه
-            Phrase search:	"رب العالمين"
-            Logical relations: سميع | بصير
-            Wildcards:	*نبي*
-            Fields:	سورة:يس
-            Intervals:	رقم_السورة:[1 الى 5]
-            Partial vocalization:	آية_:'المَلكُ'
-            Word properties:	{قول،اسم}
-            Derivations: >ملك
-            Buckwalter Transliteration: qawol
+        u"""
+Exact search:	فأسقيناكموه
+Phrase search:	"رب العالمين"
+Logical relations: سميع | بصير
+Wildcards:	*نبي*
+Fields:	سورة:يس
+Intervals:	رقم_السورة:[1 الى 5]
+Partial vocalization:	آية_:'المَلكُ'
+Word properties:	{قول،اسم}
+Derivations: >ملك
+Buckwalter Transliteration: qawol
         """,
     ],
     'code': [
